@@ -1,0 +1,3 @@
+<?php
+declare(strict_types=1);
+$root=dirname(__DIR__);$required=['public_html/index.html','public_html/install.php','public_html/api/index.php','public_html/assets/app.js','public_html/assets/styles.css','public_html/assets/cronochip-logo.png','private/bootstrap.php','private/timing.php','private/device-public.pem','private/config.example.php','sql/schema.mysql.sql','README.md'];$bad=[];foreach($required as $file)if(!is_file($root.'/'.$file)||filesize($root.'/'.$file)===0)$bad[]=$file;foreach(['private/config.php','private/installed.lock'] as $secret)if(is_file($root.'/'.$secret))$bad[]='não pode estar no pacote: '.$secret;if($bad){fwrite(STDERR,"Falha:\n- ".implode("\n- ",$bad)."\n");exit(1);}echo "Pacote completo e sem configuração privada.\n";
